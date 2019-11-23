@@ -21,8 +21,8 @@ const Signup = () => {
         setUser(user);
         push("/home");
         UIkit.notification({
-          message: `<span uk-icon='check'></span> cuenta creada con éxito`,
-          pos: "top-right",
+          message: `Felicidades! Cuenta creada con éxito`,
+          pos: "top-center",
           status: "success"
         });
       })

@@ -5,5 +5,18 @@
 }
 
 .uk-notification-close {
-  right: 1px !important;
+  right: 4px !important;
+}
+
+.lowcase {
+  text-transform: none !important;
+}
+
+.logo {
+  margin: 1em;
+  width: 3em;
+}
+
+.logo img {
+  border-radius: 60px;
 }

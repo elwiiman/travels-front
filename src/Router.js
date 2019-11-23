@@ -9,13 +9,13 @@ const Router = () => (
     <Route exact path="/">
       <h1>Home</h1>
     </Route>
-    <Route exact path="/login">
+    <Route path="/login">
       <Login />
     </Route>
     <Route exact path="/signup">
       <Signup />
     </Route>
-    <Route path="/home">
+    <Route exact path="/home">
       <h1>You are in Home</h1>
     </Route>
   </Switch>
