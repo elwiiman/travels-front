@@ -20,19 +20,33 @@ const ProfileForm = ({}) => {
     if (!profilepic) {
       profilepic = [user.profilepic];
     }
-    formData.append("profilepic", profilepic[0]);
-    formData.append("username", username);
-    updateUser(formData)
-      .then(res => {
-        const { user } = res.data;
-        console.log(user);
-        setUser(user);
-        toggleEdit();
-      })
 
-      .catch(err => {
-        console.log(err);
+    if (profilepic !== user.profilepic && username !== user.username) {
+      formData.append("profilepic", profilepic[0]);
+      formData.append("username", username);
+      updateUser(formData)
+        .then(res => {
+          const { user } = res.data;
+          console.log(user);
+          setUser(user);
+          toggleEdit();
+          UIkit.notification({
+            message: `Profile actualizado con éxito!`,
+            pos: "top-center",
+            status: "success"
+          });
+        })
+
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      UIkit.notification({
+        message: `No hay cambios que actualizar`,
+        pos: "top-center",
+        status: "warning"
       });
+    }
   };
 
   const toggleEdit = () => {
