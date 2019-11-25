@@ -5,6 +5,7 @@ const useForm = () => {
 
   const handleInput = e => {
     const { name, value } = e.target;
+    console.log(name, value);
     setForm(prevState => ({ ...prevState, [name]: value }));
   };
 
