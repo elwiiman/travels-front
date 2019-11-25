@@ -15,13 +15,14 @@ const ShowProfile = () => {
   return (
     <div className="uk-container uk-flex uk-flex-center">
       {!isEditing ? (
-        <form className="uk-form-stacked">
-          <div>
+        <form className="uk-form-stacked uk-container-special">
+          <div className="avatar uk-flex uk-flex-center">
             <img
+              className="avatar"
               src={user.profilepic}
               alt="profilepic"
-              width="200px"
-              height="200px"
+              width="160px"
+              height="160spx"
             />
           </div>
 
@@ -33,6 +34,7 @@ const ShowProfile = () => {
                 className="uk-input"
                 type="text"
                 defaultValue={user.username}
+                disabled
               />
             </div>
           </div>

@@ -40,10 +40,27 @@ const ProfileForm = ({}) => {
   };
 
   return (
-    <div className="uk-container uk-flex uk-flex-center">
+    <div className="uk-container uk-flex uk-flex-center ">
       {isEditing ? (
-        <form className="uk-form-stacked">
+        <form className="uk-form-stacked uk-container-special">
           <div className="uk-margin">
+            <div uk-form-custom="target: true">
+              <input
+                className="uk-input"
+                type="file"
+                onChange={handleFileInput}
+                name="profilepic"
+              />
+              <input
+                className="uk-input uk-form-width-large uk-input-special-width"
+                type="text"
+                placeholder="Click para subir nueva foto"
+                // disabled
+              />
+            </div>
+          </div>
+
+          {/* <div className="uk-margin">
             <label className="uk-form-label">Profile Picture</label>
             <div className="uk-inline">
               <input
@@ -53,7 +70,7 @@ const ProfileForm = ({}) => {
                 type="file"
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="uk-margin">
             <label className="uk-form-label">Username</label>
@@ -69,11 +86,19 @@ const ProfileForm = ({}) => {
           </div>
           <div className="uk-container uk-flex uk-flex-center">
             <button
+              className="uk-button uk-button-primary button-margin-right"
+              type="button"
+              onClick={toggleEdit}
+            >
+              Cancelar
+            </button>
+
+            <button
               className="uk-button uk-button-primary"
               type="button"
               onClick={handleSubmit}
             >
-              Update User
+              Actualizar Datos
             </button>
           </div>
         </form>
