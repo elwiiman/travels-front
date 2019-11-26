@@ -37,8 +37,13 @@ const ProfileForm = ({}) => {
           });
         })
 
-        .catch(err => {
-          console.log(err);
+        .catch(res => {
+          const { errormsg } = res.response.data;
+          UIkit.notification({
+            message: `${errormsg}`,
+            pos: "top-center",
+            status: "danger"
+          });
         });
     } else {
       UIkit.notification({
