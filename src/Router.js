@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
-import ProfileForm from "./components/profile/ProfileForm";
+
 import ShowProfile from "./components/profile/ShowProfile";
 // import Home from "./components/home/home.js";
 
@@ -21,7 +21,7 @@ const Router = () => (
       <h1>You are in Home</h1>
     </Route>
     <Route exact path="/profile">
-      {/* <Profile /> */}
+      
       <ShowProfile />
     </Route>
   </Switch>
