@@ -14,6 +14,7 @@ const ProfileForm = ({}) => {
     e.preventDefault();
     let formData = new FormData();
     let { profilepic, username } = form;
+
     if (!username) {
       username = user.username;
     }
@@ -21,7 +22,16 @@ const ProfileForm = ({}) => {
       profilepic = [user.profilepic];
     }
 
-    if (profilepic !== user.profilepic && username !== user.username) {
+    if (profilepic[0] === user.profilepic && username === user.username) {
+      UIkit.notification({
+        message: `No hay cambios que actualizar`,
+        pos: "top-center",
+        status: "warning"
+      });
+      return;
+    }
+
+    if (profilepic !== undefined || username !== user.username) {
       formData.append("profilepic", profilepic[0]);
       formData.append("username", username);
       updateUser(formData)
@@ -45,12 +55,6 @@ const ProfileForm = ({}) => {
             status: "danger"
           });
         });
-    } else {
-      UIkit.notification({
-        message: `No hay cambios que actualizar`,
-        pos: "top-center",
-        status: "warning"
-      });
     }
   };
 
