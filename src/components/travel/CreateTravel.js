@@ -5,10 +5,11 @@ import { createTravel } from "../../services/travel";
 import UIkit from "uikit";
 
 const CreateTravel = () => {
-  const { form, handleInput } = useForm();
+  const { form, handleInput, handleFileInput } = useForm();
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log(form);
     createTravel(form)
       .then(travel => {
         console.log(travel);
@@ -24,6 +25,7 @@ const CreateTravel = () => {
         <TravelForm
           submit={handleSubmit}
           handleChange={handleInput}
+          handleFileInput={handleFileInput}
           action="Crear Viaje"
           {...form}
         />
