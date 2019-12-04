@@ -28,7 +28,7 @@ const TravelForm = ({
   handleFileInput,
   title = "",
   description = "",
-  transport,
+  type,
   aviableSeats,
   duration,
   submit,
@@ -78,9 +78,10 @@ const TravelForm = ({
             <div>
               <label className="uk-form-label">Transporte</label>
               <select
+                type="text"
                 onChange={handleChange}
-                name="transport"
-                value={transport}
+                name="type"
+                value={type}
                 className="uk-select"
               >
                 <option value="autobus">Autobús</option>
@@ -92,6 +93,7 @@ const TravelForm = ({
             <div>
               <label className="uk-form-label">Lugares Disponibles</label>
               <select
+                type="number"
                 onChange={handleChange}
                 name="aviableSeats"
                 value={aviableSeats}
