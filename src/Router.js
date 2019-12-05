@@ -5,6 +5,7 @@ import Signup from "./components/auth/Signup";
 
 import ShowProfile from "./components/profile/ShowProfile";
 import CreateTravel from "./components/travel/CreateTravel";
+import EditTravel from "./components/travel/EditTravel";
 // import Home from "./components/home/home.js";
 
 const Router = () => (
@@ -27,6 +28,7 @@ const Router = () => (
     <Route exact path="/travel">
       <CreateTravel />
     </Route>
+    <Route path="/travel/edit/:id" component={EditTravel} />
   </Switch>
 );
 

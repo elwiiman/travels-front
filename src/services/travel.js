@@ -11,6 +11,15 @@ export const getTravels = () => {
   });
 };
 
+export const getATravel = id => {
+  const token = localStorage.getItem("token");
+  return axios.get(`${base_url}/travel/${id}`, {
+    headers: {
+      Authorization: token
+    }
+  });
+};
+
 export const createTravel = data => {
   const token = localStorage.getItem("token");
   return axios.post(`${base_url}/travel`, data, {

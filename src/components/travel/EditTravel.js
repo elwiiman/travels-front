@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TravelForm from "./TravelForm";
 import useForm from "../../hooks/useForm";
-import { createTravel } from "../../services/travel";
+import { getATravel } from "../../services/travel";
 import UIkit from "uikit";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router";
 
-const CreateTravel = () => {
-  const { form, handleInput, handleFileInput } = useForm();
-  const { push } = useHistory();
+const EditTravel = () => {
+  let { id } = useParams();
+  let { form, setform } = useForm();
+  const { handleInput, handleFileInput } = useForm();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -34,50 +36,35 @@ const CreateTravel = () => {
         formData.append(key, form[key]);
       }
     }
-
-    // for (var value of formData.values()) {
-    //   console.log(value);
-    // }
-
-    // // Display the keys
-    // for (var key of formData.keys()) {
-    //   console.log(key);
-    // }
-
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
-
-    createTravel(formData)
-      .then(res => {
-        console.log(res.data);
-        UIkit.notification({
-          message: `¡Viaje creado con exito!`,
-          pos: "top-center",
-          status: "success"
-        });
-        push("/home");
-      })
-      .catch(err => {
-        console.log(err);
-        if (err) {
-          UIkit.notification({
-            message: `Algo salió mal, verifica que haz llenado todos los campos`,
-            pos: "top-center",
-            status: "danger"
-          });
-        }
-      });
   };
+
+  useEffect(() => {
+    getATravel(id)
+      .then(res => {
+        const {
+          description,
+          duration,
+          photos,
+          route,
+          title,
+          transport
+        } = res.data.travel;
+        setform({ description, duration, photos, route, title, transport });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="uk-section">
+      {console.log(form)}
       <div className="uk-container ">
         <TravelForm
           submit={handleSubmit}
           handleChange={handleInput}
           handleFileInput={handleFileInput}
-          action="Crear"
+          action="Update"
           {...form}
         />
       </div>
@@ -85,4 +72,4 @@ const CreateTravel = () => {
   );
 };
 
-export default CreateTravel;
+export default EditTravel;
