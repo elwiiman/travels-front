@@ -3,12 +3,13 @@ import TravelForm from "./TravelForm";
 import useForm from "../../hooks/useForm";
 import { createTravel } from "../../services/travel";
 import UIkit from "uikit";
+import { useHistory } from "react-router-dom";
 
 const CreateTravel = () => {
   const { form, handleInput, handleFileInput } = useForm();
+  const { push } = useHistory();
 
   const handleSubmit = e => {
-    let transport = {};
     e.preventDefault();
     console.log(form);
     const formData = new FormData();
@@ -27,7 +28,8 @@ const CreateTravel = () => {
       } else if (
         key === "title" ||
         key === "duration" ||
-        key === "description"
+        key === "description" ||
+        key === "price"
       ) {
         formData.append(key, form[key]);
       }
@@ -49,9 +51,22 @@ const CreateTravel = () => {
     createTravel(formData)
       .then(res => {
         console.log(res.data);
+        UIkit.notification({
+          message: `¡Viaje creado con exito!`,
+          pos: "top-center",
+          status: "success"
+        });
+        push("/home");
       })
       .catch(err => {
         console.log(err);
+        if (err) {
+          UIkit.notification({
+            message: `Algo salió mal, verifica que haz llenado todos los campos`,
+            pos: "top-center",
+            status: "danger"
+          });
+        }
       });
   };
 

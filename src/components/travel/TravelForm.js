@@ -27,10 +27,11 @@ const TravelForm = ({
   handleChange,
   handleFileInput,
   title = "",
+  price = "",
   description = "",
-  type,
-  aviableSeats,
-  duration,
+  type = "",
+  aviableSeats = "",
+  duration = "",
   submit,
   pointOfInterest,
   action
@@ -50,16 +51,38 @@ const TravelForm = ({
   return (
     <form onSubmit={submit}>
       <fieldset className="uk-fieldset">
-        <label className="uk-form-label">Título del Viaje</label>
-        <div className="uk-margin">
-          <input
-            onChange={handleChange}
-            name="title"
-            value={title}
-            className="uk-input"
-            type="text"
-          />
+        <div className="uk-text-center" uk-grid="true">
+          <div className="uk-width-1-2">
+            <div>
+              <label className="uk-form-label">Título del Viaje</label>
+              <div className="uk-margin">
+                <input
+                  onChange={handleChange}
+                  name="title"
+                  value={title}
+                  className="uk-input"
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="uk-width-1-2">
+            <div className="uk-width-4-6">
+              <label className="uk-form-label">Precio por Persona (MXN)</label>
+              <div className="uk-margin">
+                <input
+                  onChange={handleChange}
+                  name="price"
+                  value={price}
+                  className="uk-input"
+                  type="number"
+                />
+              </div>
+            </div>
+          </div>
         </div>
+
         <label className="uk-form-label">Descripción</label>
         <div className="uk-margin">
           <textarea
@@ -84,6 +107,9 @@ const TravelForm = ({
                 value={type}
                 className="uk-select"
               >
+                <option disabled value="">
+                  selecciona una opción
+                </option>
                 <option value="autobus">Autobús</option>
                 <option value="van">Van</option>
               </select>
@@ -99,6 +125,9 @@ const TravelForm = ({
                 value={aviableSeats}
                 className="uk-select"
               >
+                <option disabled value="">
+                  selecciona una opción
+                </option>
                 <option value="8">8</option>
                 <option value="16">16</option>
                 <option value="24">24</option>
@@ -115,6 +144,9 @@ const TravelForm = ({
                 value={duration}
                 className="uk-select"
               >
+                <option disabled value="">
+                  selecciona una opción
+                </option>
                 {days.map((day, index) => {
                   return (
                     <option key={index} value={`${day}`}>
