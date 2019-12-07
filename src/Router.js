@@ -6,7 +6,7 @@ import Signup from "./components/auth/Signup";
 import ShowProfile from "./components/profile/ShowProfile";
 import CreateTravel from "./components/travel/CreateTravel";
 import EditTravel from "./components/travel/EditTravel";
-// import Home from "./components/home/home.js";
+import Home from "./components/home/Home";
 
 const Router = () => (
   <Switch>
@@ -20,7 +20,7 @@ const Router = () => (
       <Signup />
     </Route>
     <Route exact path="/home">
-      <h1>You are in Home</h1>
+      <Home></Home>
     </Route>
     <Route exact path="/profile">
       <ShowProfile />

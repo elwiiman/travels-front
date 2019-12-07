@@ -5,7 +5,6 @@ import { getATravel, updateTravel } from "../../services/travel";
 import UIkit from "uikit";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
-import Router from "../../Router";
 
 const EditTravel = () => {
   let { id } = useParams();

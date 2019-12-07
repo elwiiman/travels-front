@@ -5,7 +5,7 @@ export const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const initialUserState = JSON.parse(localStorage.getItem("user")) || {};
   const [user, setUser] = useState(initialUserState);
-  // const [properties, setProperties] = useState([]);
+  const [travels, setTravels] = useState([]);
 
   const resetContext = () => {
     setUser({});
@@ -16,8 +16,9 @@ const AppProvider = ({ children }) => {
       value={{
         user,
         setUser,
-        resetContext
-        // properties, setProperties
+        resetContext,
+        travels,
+        setTravels
       }}
     >
       {children}
