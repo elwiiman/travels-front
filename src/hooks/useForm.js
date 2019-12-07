@@ -14,7 +14,29 @@ const useForm = () => {
     setForm(prevState => ({ ...prevState, [name]: files }));
   };
 
-  return { form, handleInput, handleFileInput };
+  const removeKey = key => {
+    const updatedForm = { ...form };
+    delete updatedForm[key];
+
+    setForm({ ...updatedForm });
+  };
+
+  const removeKeyWithIndex = (key, index) => {
+    const updatedForm = { ...form };
+    delete updatedForm[key];
+    updatedForm.route.splice(index, 1);
+    setForm({ ...updatedForm });
+  };
+
+  return {
+    form,
+    setForm,
+    handleInput,
+    handleFileInput,
+    removeKey,
+
+    removeKeyWithIndex
+  };
 };
 
 export default useForm;

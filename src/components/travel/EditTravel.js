@@ -1,15 +1,23 @@
-import React, { useEffect } from "react";
-import TravelForm from "./TravelForm";
+import React, { useEffect, useState } from "react";
+import EditTravelForm from "./EditTravelForm";
 import useForm from "../../hooks/useForm";
-import { getATravel } from "../../services/travel";
+import { getATravel, updateTravel } from "../../services/travel";
 import UIkit from "uikit";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
+import Router from "../../Router";
 
 const EditTravel = () => {
   let { id } = useParams();
-  let { form, setform } = useForm();
-  const { handleInput, handleFileInput } = useForm();
+  const { push } = useHistory();
+
+  const {
+    form,
+    handleInput,
+    handleFileInput,
+    setForm,
+    removeKeyWithIndex
+  } = useForm();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,6 +33,7 @@ const EditTravel = () => {
         if (key === "type") formData.append("transport.type", form[key]);
         else formData.append("transport.aviableSeats", form[key]);
       }
+
       if (key.includes("point")) {
         formData.append("route", form[key]);
       } else if (
@@ -36,20 +45,55 @@ const EditTravel = () => {
         formData.append(key, form[key]);
       }
     }
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+    updateTravel(formData, id)
+      .then(res => {
+        console.log(res.data);
+        UIkit.notification({
+          message: `¡Viaje actualizado con exito!`,
+          pos: "top-center",
+          status: "success"
+        });
+        push("/home");
+      })
+      .catch(err => {
+        console.log(err);
+        if (err) {
+          UIkit.notification({
+            message: `Algo salió mal, verifica por favor`,
+            pos: "top-center",
+            status: "danger"
+          });
+        }
+      });
+  };
+  const updateStateWithService = res => {
+    setForm(res);
   };
 
   useEffect(() => {
     getATravel(id)
       .then(res => {
-        const {
-          description,
-          duration,
-          photos,
-          route,
-          title,
-          transport
-        } = res.data.travel;
-        setform({ description, duration, photos, route, title, transport });
+        let obj = {};
+        let { travel } = res.data;
+        let {
+          transport: { type },
+          transport: { aviableSeats },
+          route
+        } = travel;
+
+        route.map((route, index) => {
+          return (obj[`point-${index}`] = route);
+        });
+
+        // route = [...points];
+
+        travel = { ...travel, type, aviableSeats, ...obj };
+
+        updateStateWithService(travel);
       })
       .catch(error => {
         console.log(error);
@@ -58,13 +102,13 @@ const EditTravel = () => {
 
   return (
     <div className="uk-section">
-      {console.log(form)}
       <div className="uk-container ">
-        <TravelForm
+        <EditTravelForm
           submit={handleSubmit}
           handleChange={handleInput}
           handleFileInput={handleFileInput}
           action="Update"
+          removeKeyWithIndex={removeKeyWithIndex}
           {...form}
         />
       </div>

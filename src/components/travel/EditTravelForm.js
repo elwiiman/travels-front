@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const days = [
   1,
@@ -23,8 +23,8 @@ const days = [
   20
 ];
 
-const TravelForm = ({
-  removeKey,
+const EditTravelForm = ({
+  removeKeyWithIndex,
   handleChange,
   handleFileInput,
   title = "",
@@ -34,25 +34,30 @@ const TravelForm = ({
   aviableSeats = "",
   duration = "",
   submit,
-  route,
+  route = [],
+  pointOfInterest = "",
   action
 }) => {
-  const [pointState, setPointState] = useState([{ point: null }]);
+  const blankPoint = "";
+  const [pointState, setPointState] = useState([...route]);
   const addPoint = () => {
-    const values = [...pointState];
-    values.push({ point: null });
-    setPointState(values);
+    setPointState([...pointState, blankPoint]);
   };
 
+  useEffect(() => {
+    setPointState([...route]);
+  }, [route]);
+
   const deletePoint = id => {
-    console.log("before", pointState);
+    console.log("actual", pointState);
     console.log(id);
-    const values = [...pointState];
-    values.splice(id, 1);
-    setPointState(values);
-    removeKey(`point-${id}`);
-    console.log("after", pointState);
+    pointState.splice(id, 1);
+    console.log("spliced", pointState);
+    setPointState(pointState);
+    removeKeyWithIndex(`point-${id}`, id);
   };
+
+  console.log(pointState);
 
   return (
     <form onSubmit={submit}>
@@ -184,7 +189,8 @@ const TravelForm = ({
                   <input
                     onChange={handleChange}
                     name={pointId}
-                    value={route}
+                    // value={pointOfInterest}
+                    defaultValue={point}
                     className="uk-input"
                     type="text"
                   />
@@ -212,7 +218,7 @@ const TravelForm = ({
             <input
               className="uk-input uk-form-width-large"
               type="text"
-              placeholder="Selecciona fotos representativas del viaje"
+              placeholder="Reemplaza fotos representativas del viaje"
               disabled
             />
           </div>
@@ -228,4 +234,4 @@ const TravelForm = ({
   );
 };
 
-export default TravelForm;
+export default EditTravelForm;

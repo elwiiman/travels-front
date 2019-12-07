@@ -29,3 +29,13 @@ export const createTravel = data => {
     }
   });
 };
+
+export const updateTravel = (data, id) => {
+  const token = localStorage.getItem("token");
+  return axios.patch(`${base_url}/travel/${id}`, data, {
+    headers: {
+      Authorization: token,
+      "Content-Type": "multipart/form-data"
+    }
+  });
+};

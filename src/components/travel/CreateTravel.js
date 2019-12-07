@@ -6,7 +6,7 @@ import UIkit from "uikit";
 import { useHistory } from "react-router-dom";
 
 const CreateTravel = () => {
-  const { form, handleInput, handleFileInput } = useForm();
+  const { form, handleInput, handleFileInput, removeKey } = useForm();
   const { push } = useHistory();
 
   const handleSubmit = e => {
@@ -23,7 +23,7 @@ const CreateTravel = () => {
         if (key === "type") formData.append("transport.type", form[key]);
         else formData.append("transport.aviableSeats", form[key]);
       }
-      if (key.includes("point")) {
+      if (key.includes("point") || key === "route") {
         formData.append("route", form[key]);
       } else if (
         key === "title" ||
@@ -78,6 +78,7 @@ const CreateTravel = () => {
           handleChange={handleInput}
           handleFileInput={handleFileInput}
           action="Crear"
+          removeKey={removeKey}
           {...form}
         />
       </div>
