@@ -1,30 +1,10 @@
 import React, { useState, useEffect } from "react";
-
-const days = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20
-];
+import { days, countries } from "../../auxiliar/auxiliarData";
 
 const EditTravelForm = ({
   removeKeyWithIndex,
+  outDate = "",
+  countryState = "",
   handleChange,
   handleFileInput,
   title = "",
@@ -89,6 +69,48 @@ const EditTravelForm = ({
                   className="uk-input"
                   type="number"
                 />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="uk-text-center" uk-grid="true">
+          <div className="uk-width-1-2">
+            <div>
+              <label className="uk-form-label">Fecha de Salida</label>
+              <div className="uk-margin">
+                <input
+                  onChange={handleChange}
+                  name="outDate"
+                  value={outDate}
+                  className="uk-input"
+                  type="date"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="uk-width-1-2">
+            <div>
+              <label className="uk-form-label">Estado a visitar</label>
+              <div className="uk-margin">
+                <select
+                  onChange={handleChange}
+                  name="countryState"
+                  value={countryState}
+                  className="uk-select"
+                >
+                  <option disabled value="">
+                    selecciona una opción                 
+                  </option>
+                                  
+                  {countries.map((countrie, index) => {
+                    return (
+                      <option key={index} value={`${countrie}`}>
+                        {countrie}                   
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </div>

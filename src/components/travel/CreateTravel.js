@@ -29,7 +29,9 @@ const CreateTravel = () => {
         key === "title" ||
         key === "duration" ||
         key === "description" ||
-        key === "price"
+        key === "price" ||
+        key === "countryState" ||
+        key === "outDate"
       ) {
         formData.append(key, form[key]);
       }

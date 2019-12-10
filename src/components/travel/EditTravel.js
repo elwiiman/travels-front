@@ -39,7 +39,9 @@ const EditTravel = () => {
         key === "title" ||
         key === "duration" ||
         key === "description" ||
-        key === "price"
+        key === "price" ||
+        key === "countryState" ||
+        key === "outDate"
       ) {
         formData.append(key, form[key]);
       }
@@ -81,16 +83,19 @@ const EditTravel = () => {
         let {
           transport: { type },
           transport: { aviableSeats },
-          route
+          route,
+          outDate
         } = travel;
 
         route.map((route, index) => {
           return (obj[`point-${index}`] = route);
         });
 
-        // route = [...points];
+        const date = new Date(outDate).toISOString().substring(0, 10);
+        console.log(outDate);
+        outDate = date;
 
-        travel = { ...travel, type, aviableSeats, ...obj };
+        travel = { ...travel, type, aviableSeats, outDate, ...obj };
 
         updateStateWithService(travel);
       })

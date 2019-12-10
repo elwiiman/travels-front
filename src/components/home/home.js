@@ -21,7 +21,10 @@ const Home = () => {
   return (
     <div className="uk-section">
       <div className="uk-container">
-        <div className="uk-grid uk-child-width-1-3 uk-grid-match uk-grid-small">
+        <div
+          className="uk-child-width-1-2@m uk-grid-small uk-grid-match"
+          uk-grid="true"
+        >
           {travels.map((travel, index) => (
             <Card key={index} {...travel} />
           ))}
