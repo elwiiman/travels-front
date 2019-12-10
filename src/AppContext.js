@@ -9,6 +9,7 @@ const AppProvider = ({ children }) => {
 
   const resetContext = () => {
     setUser({});
+    setTravels([]);
   };
 
   return (

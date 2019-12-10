@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { days, countries } from "../../auxiliar/auxiliarData";
+import { useHistory } from "react-router-dom";
 
 const EditTravelForm = ({
   removeKeyWithIndex,
@@ -15,9 +16,11 @@ const EditTravelForm = ({
   duration = "",
   submit,
   route = [],
+  photos = [],
   pointOfInterest = "",
   action
 }) => {
+  const { push } = useHistory();
   const blankPoint = "";
   const [pointState, setPointState] = useState([...route]);
   const addPoint = () => {
@@ -211,7 +214,6 @@ const EditTravelForm = ({
                   <input
                     onChange={handleChange}
                     name={pointId}
-                    // value={pointOfInterest}
                     defaultValue={point}
                     className="uk-input"
                     type="text"
@@ -235,6 +237,7 @@ const EditTravelForm = ({
               onChange={handleFileInput}
               name="photos"
               type="file"
+              defaultValue={photos}
               multiple
             />
             <input
@@ -246,9 +249,22 @@ const EditTravelForm = ({
           </div>
         </div>
 
-        <div className="uk-container uk-flex uk-flex-center uk-margin-medium-top">
-          <button className="uk-button uk-button-primary" type="submit">
+        <div className="uk-container uk-flex uk-flex-center">
+          <button
+            className="uk-button uk-button-primary button-margin-right"
+            type="submit"
+          >
             {action}
+          </button>
+
+          <button
+            className="uk-button uk-button-primary"
+            type="button"
+            onClick={() => {
+              push("/home");
+            }}
+          >
+            Cancelar
           </button>
         </div>
       </fieldset>

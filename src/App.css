@@ -40,3 +40,10 @@
 .avatar {
   border-radius: 50%;
 }
+
+.uk-dropdown {
+  min-width: 100px !important;
+  padding: 18px !important;
+  top: 20px !important;
+  left: 480px !important;
+}

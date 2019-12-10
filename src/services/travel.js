@@ -39,3 +39,13 @@ export const updateTravel = (data, id) => {
     }
   });
 };
+
+export const deleteTravel = id => {
+  const token = localStorage.getItem("token");
+  return axios.delete(`${base_url}/travel/${id}`, {
+    headers: {
+      Authorization: token,
+      "Content-Type": "multipart/form-data"
+    }
+  });
+};
