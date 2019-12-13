@@ -28,8 +28,16 @@ const Nav = () => {
           </li>
           {user._id ? (
             <li className="">
-              <NavLink className="lowcase" exact to="/">
+              <NavLink className="lowcase" exact to="/home">
                 Home
+              </NavLink>
+            </li>
+          ) : null}
+
+          {user.role === "admin" ? (
+            <li className="">
+              <NavLink className="lowcase" exact to="/travel">
+                Crear Nuevo Viaje
               </NavLink>
             </li>
           ) : null}

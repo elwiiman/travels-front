@@ -47,3 +47,12 @@
   top: 20px !important;
   left: 480px !important;
 }
+
+.personal-icon {
+  width: 24x;
+  height: 24px;
+}
+
+.custom-gray-color-div {
+  background-color: #f8f8f8;
+}

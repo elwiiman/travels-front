@@ -32,11 +32,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!user) return push("/login");
+    if (!Object.keys(user).length) return push("/login");
 
     getTravels().then(res => {
       const { travels } = res.data;
-      console.log(travels);
       setTravels(travels);
     });
   }, []);
@@ -53,6 +52,7 @@ const Home = () => {
               key={index}
               deleteATravel={() => deleteATravel(travel._id, index)}
               {...travel}
+              userType={user.role}
             />
           ))}
         </div>

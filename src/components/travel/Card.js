@@ -11,13 +11,17 @@ moment.locale("es");
 const Card = ({
   _id,
   title,
-  description,
   photos = [],
   price,
-  aviableSeats,
+  transport,
   updatedAt,
-  deleteATravel
+  deleteATravel,
+  outDate,
+  countryState,
+  duration,
+  userType
 }) => {
+  console.log(userType);
   return (
     <div>
       <div className="uk-card uk-card-default ">
@@ -32,8 +36,34 @@ const Card = ({
               </time>
             </div>
 
+            {userType === "admin" ? (
+              <div>
+                <div>
+                  <span uk-icon="more-vertical"></span>
+                </div>
+
+                <div uk-dropdown="true">
+                  <ul className="uk-nav uk-dropdown-nav">
+                    <li className="uk-flex uk-flex-center">
+                      <button
+                        type="button"
+                        uk-icon="trash"
+                        onClick={deleteATravel}
+                      ></button>
+                    </li>
+                    <li className="uk-nav-divider"></li>
+                    <li className="uk-flex uk-flex-center">
+                      <Link
+                        to={`travel/edit/${_id}`}
+                        uk-icon="file-edit"
+                      ></Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ) : null}
             {/* container de menu de acciones */}
-            <div>
+            {/* <div>
               <div>
                 <span uk-icon="more-vertical"></span>
               </div>
@@ -53,20 +83,102 @@ const Card = ({
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* photo container */}
         <div className="uk-card-media-left uk-cover-container">
-          <img src={photos[0]} alt="" uk-cover="true" />
+          <img src={photos[0]} alt="travel" uk-cover="true" />
           <canvas width="600" height="500"></canvas>
         </div>
 
+        {/* important data for the travel */}
+        <div className="uk-margin" uk-grid="true">
+          <div className="uk-width-1-3 uk-flex-inline">
+            <div className="uk-padding-small">
+              <img
+                src={
+                  "https://res.cloudinary.com/elwiiman/image/upload/v1576184255/MexicoParaTodos/Utils/calendar_it2mei.png"
+                }
+                alt="calendar-icon"
+                className="personal-icon uk-margin-small-right "
+              ></img>
+
+              <span>{moment(outDate).format("L")}</span>
+            </div>
+          </div>
+
+          <div className="uk-width-1-3 uk-flex-inline">
+            <div className="uk-padding-small">
+              <img
+                src={
+                  "https://res.cloudinary.com/elwiiman/image/upload/v1576184901/MexicoParaTodos/Utils/placeholder_ll1vml.png"
+                }
+                alt="calendar-icon"
+                className="personal-icon uk-margin-small-right "
+              ></img>
+
+              <span>{countryState}</span>
+            </div>
+          </div>
+          <div className="uk-width-1-3 uk-flex-inline">
+            <div className="uk-padding-small">
+              <img
+                src={
+                  "https://res.cloudinary.com/elwiiman/image/upload/v1576187220/MexicoParaTodos/Utils/sunny-day_xwu0tk.png"
+                }
+                alt="sun-icon"
+                className="personal-icon uk-margin-small-right "
+              ></img>
+
+              <span>{duration}</span>
+            </div>
+            <div className="uk-padding-small">
+              <img
+                src={
+                  "https://res.cloudinary.com/elwiiman/image/upload/v1576187107/MexicoParaTodos/Utils/moon_xt6bi4.png"
+                }
+                alt="night-icon"
+                className="personal-icon uk-margin-small-right "
+              ></img>
+
+              <span>{duration - 1}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="uk-width-1-1  uk-flex uk-padding uk-flex-right custom-gray-color-div ">
+          <div className="uk-width-1-3">
+            <img
+              src="https://res.cloudinary.com/elwiiman/image/upload/v1576187970/MexicoParaTodos/Utils/coin_hycoxa.png"
+              alt="coin-icon"
+              className="personal-icon uk-margin-small-right "
+            />
+            <span>
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currencyDisplay: "code",
+                currency: "MXN"
+              }).format(price)}
+            </span>
+          </div>
+
+          <div>
+            <img
+              src="https://res.cloudinary.com/elwiiman/image/upload/v1576189039/MexicoParaTodos/Utils/sitting-silhouette_k4sxfd.png"
+              alt="seat-icon"
+              className="personal-icon uk-margin-small-right "
+            />
+            <span>{transport.aviableSeats}</span>
+          </div>
+        </div>
+
+        {/* footer */}
         <div className="uk-card-footer">
-          <a href="#" className="uk-button uk-button-text">
-            Read more
-          </a>
+          <Link to={`travel/info/${_id}`} className="uk-button uk-button-text">
+            Más Información
+          </Link>
         </div>
       </div>
     </div>
