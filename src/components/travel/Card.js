@@ -38,6 +38,7 @@ const Card = ({
 
             {userType === "admin" ? (
               <div>
+                {/* container de menu de acciones */}
                 <div>
                   <span uk-icon="more-vertical"></span>
                 </div>
@@ -62,28 +63,6 @@ const Card = ({
                 </div>
               </div>
             ) : null}
-            {/* container de menu de acciones */}
-            {/* <div>
-              <div>
-                <span uk-icon="more-vertical"></span>
-              </div>
-
-              <div uk-dropdown="true">
-                <ul className="uk-nav uk-dropdown-nav">
-                  <li className="uk-flex uk-flex-center">
-                    <button
-                      type="button"
-                      uk-icon="trash"
-                      onClick={deleteATravel}
-                    ></button>
-                  </li>
-                  <li className="uk-nav-divider"></li>
-                  <li className="uk-flex uk-flex-center">
-                    <Link to={`travel/edit/${_id}`} uk-icon="file-edit"></Link>
-                  </li>
-                </ul>
-              </div>
-            </div> */}
           </div>
         </div>
 
@@ -105,7 +84,9 @@ const Card = ({
                 className="personal-icon uk-margin-small-right "
               ></img>
 
-              <span>{moment(outDate).format("L")}</span>
+              <span uk-tooltip="title: Fecha de Salida; pos: bottom">
+                {moment(outDate).format("L")}
+              </span>
             </div>
           </div>
 
@@ -155,7 +136,7 @@ const Card = ({
               alt="coin-icon"
               className="personal-icon uk-margin-small-right "
             />
-            <span>
+            <span uk-tooltip="Precio por persona">
               {new Intl.NumberFormat("en-US", {
                 style: "currency",
                 currencyDisplay: "code",

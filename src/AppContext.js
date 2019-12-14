@@ -6,6 +6,7 @@ const AppProvider = ({ children }) => {
   const initialUserState = JSON.parse(localStorage.getItem("user")) || {};
   const [user, setUser] = useState(initialUserState);
   const [travels, setTravels] = useState([]);
+  const [travel, setTravel] = useState(null);
 
   const resetContext = () => {
     setUser({});
@@ -19,7 +20,9 @@ const AppProvider = ({ children }) => {
         setUser,
         resetContext,
         travels,
-        setTravels
+        setTravels,
+        travel,
+        setTravel
       }}
     >
       {children}

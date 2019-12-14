@@ -6,12 +6,10 @@ import { getATravel } from "../../services/travel";
 import { useHistory, Link } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { useParams } from "react-router";
-import Router from "../../Router";
-import moment from "moment";
-import "moment/locale/es";
-moment.locale("es");
-const Info = ({}) => {
-  const { user, travels, setTravels } = useContext(AppContext);
+import InfoDetailCard from "./InfoDetailCard";
+
+const Info = () => {
+  const { user, travel, setTravel } = useContext(AppContext);
   let { id } = useParams();
   const { push } = useHistory();
 
@@ -20,11 +18,12 @@ const Info = ({}) => {
 
     getATravel(id).then(res => {
       const { travel } = res.data;
-      setTravels(travel);
+      setTravel(travel);
     });
   }, []);
 
-  return <div>Esta es la seccion de info</div>;
+  console.log(travel);
+  return <InfoDetailCard {...travel}></InfoDetailCard>;
 };
 
 export default Info;
