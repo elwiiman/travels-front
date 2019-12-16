@@ -56,3 +56,45 @@
 .custom-gray-color-div {
   background-color: #f8f8f8;
 }
+
+.hide {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.control-button {
+  padding: 0 10px !important;
+  margin: 0 7px !important;
+}
+
+.uk-input:disabled.control-input {
+  background-color: white !important;
+}
+
+.container-overflowed {
+  height: 300px;
+  overflow: scroll;
+}
+
+.marked-border {
+  border: 1px solid #7d8d9c;
+
+  padding: 8px 10px 12px 10px !important;
+}
+
+.uk-table {
+  border: 1px solid #e5e5e5 !important;
+}
+
+.uk-table-justify td:first-child,
+.uk-table-justify th:first-child {
+  padding-left: 10px !important;
+}
+
+.uk-table-justify td:last-child,
+.uk-table-justify th:last-child {
+  padding-right: 10px !important;
+}

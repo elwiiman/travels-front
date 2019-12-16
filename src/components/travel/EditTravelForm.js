@@ -146,8 +146,8 @@ const EditTravelForm = ({
                 <option disabled value="">
                   selecciona una opción
                 </option>
-                <option value="autobus">Autobús</option>
-                <option value="van">Van</option>
+                <option value="Autobus">Autobús</option>
+                <option value="Van">Van</option>
               </select>
             </div>
           </div>

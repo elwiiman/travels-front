@@ -22,7 +22,6 @@ const Info = () => {
     });
   }, []);
 
-  console.log(travel);
   return <InfoDetailCard {...travel}></InfoDetailCard>;
 };
 
