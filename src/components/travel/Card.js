@@ -156,11 +156,16 @@ const Card = ({
         </div>
 
         {/* footer */}
-        <div className="uk-card-footer">
-          <Link to={`travel/info/${_id}`} className="uk-button uk-button-text">
-            Más Información
-          </Link>
-        </div>
+        {userType === "user" ? (
+          <div className="uk-card-footer">
+            <Link
+              to={`travel/info/${_id}`}
+              className="uk-button uk-button-text"
+            >
+              Más Información
+            </Link>
+          </div>
+        ) : null}
       </div>
     </div>
   );

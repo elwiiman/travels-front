@@ -10,6 +10,7 @@ const Login = () => {
   const { form, handleInput } = useForm();
   const { setUser } = useContext(AppContext);
   const { push } = useHistory();
+  let occurrence = false;
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -23,11 +24,19 @@ const Login = () => {
       })
       .catch(res => {
         const { errormsg } = res.response.data;
-        UIkit.notification({
-          message: `${errormsg}`,
-          pos: "top-center",
-          status: "danger"
-        });
+
+        if (occurrence === false) {
+          occurrence = true;
+          UIkit.notification({
+            message: `${errormsg}`,
+            pos: "top-center",
+            status: "danger",
+            timeout: 3100
+          });
+          UIkit.util.on(document, "close", function(evt) {
+            occurrence = false;
+          });
+        }
       });
   };
 

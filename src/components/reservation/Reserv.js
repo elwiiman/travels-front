@@ -14,6 +14,8 @@ const Reserv = ({
 }) => {
   let [quantity, setQuantity] = useState(1);
   let [companions, setCompanions] = useState([{ value: null }]);
+  let occurrence = false;
+  let datablank = true;
 
   const { assistants, setAssistants } = useContext(AppContext);
 
@@ -31,14 +33,15 @@ const Reserv = ({
       if (companion.value === null || companion.value === "") {
         canContinue = false;
         UIkit.notification({
-          message: `Todos los campos de registro deben estar llenos.`,
-          // Falta Registro de ${
-          //   index === 0 ? `Responsable de Reservación` : `Acompañante ${index}`
-          // }`,
+          message: `Todos los campos de registro deben estar llenos.
+          Falta Registro de ${
+            index === 0 ? `Responsable de Reservación` : `Acompañante ${index}`
+          }`,
           pos: "top-center",
           status: "warning",
           timeout: 2050
         });
+        return;
       } else {
         canContinue = true;
         newAssistants.push(companion.value);
@@ -53,7 +56,7 @@ const Reserv = ({
   };
 
   const add = () => {
-    if (quantity < aviableSeats) {
+    if (quantity < aviableSeats && occurrence === false) {
       setQuantity(quantity + 1);
       let newCompanions = [...companions];
       console.log("before", newCompanions);
@@ -61,18 +64,22 @@ const Reserv = ({
       console.log("after", newCompanions);
       setCompanions(newCompanions);
     }
-    if (quantity === aviableSeats) {
+    if (quantity === aviableSeats && occurrence === false) {
+      occurrence = true;
       UIkit.notification({
         message: `No puedes reservar más lugares de los disponibles`,
         pos: "top-center",
         status: "warning",
         timeout: 2050
       });
+      UIkit.util.on(document, "close", function(evt) {
+        occurrence = false;
+      });
     }
   };
 
   const substract = () => {
-    if (quantity > 1) {
+    if (quantity > 1 && occurrence === false) {
       setQuantity(quantity - 1);
       let newCompanions = [...companions];
       console.log("before", newCompanions);
@@ -80,12 +87,16 @@ const Reserv = ({
       console.log("after", newCompanions);
       setCompanions(newCompanions);
     }
-    if (quantity === 1) {
+    if (quantity === 1 && occurrence === false) {
+      occurrence = true;
       UIkit.notification({
         message: `Tienes que reservar por lo menos un lugar`,
         pos: "top-center",
         status: "warning",
         timeout: 2050
+      });
+      UIkit.util.on(document, "close", function(evt) {
+        occurrence = false;
       });
     }
   };
