@@ -1,3 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Caveat:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+/* body {
+  background-color: rgb(219, 231, 219);
+  rgba(166, 194, 176, 0.37);
+} */
+
 .uk-notification-message {
   font-size: 0.95em !important;
   line-height: 1.4 !important;
@@ -97,4 +105,50 @@
 .uk-table-justify td:last-child,
 .uk-table-justify th:last-child {
   padding-right: 10px !important;
+}
+
+.landing-about {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.192),
+      rgba(255, 255, 255, 0.274)
+    ),
+    url("https://res.cloudinary.com/elwiiman/image/upload/v1576567107/MexicoParaTodos/principal1_wla8en.jpg");
+  height: 87vh;
+}
+
+.landing {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.274),
+      rgba(255, 255, 255, 0.199)
+    ),
+    url("https://res.cloudinary.com/elwiiman/image/upload/v1576571856/MexicoParaTodos/can%CC%83on_sumidero_gxnu25.jpg");
+  height: 87vh;
+  background-size: 100% 100%;
+}
+
+.inside-landing {
+  height: 100%;
+}
+
+.mytitle {
+  font-family: Caveat;
+  font-size: 8em !important;
+  color: rgb(35, 63, 41);
+}
+
+.myparagraph {
+  font-family: Roboto;
+  font-size: 1.04em !important;
+  color: rgb(35, 63, 41);
+  width: 70%;
+  padding: 0;
+  text-align: justify;
+}
+
+.uk-button-primary {
+  background-color: rgba(66, 122, 77, 0.925) !important;
+}
+
+.principal-button {
+  font-size: 1.114em !important;
 }

@@ -9,6 +9,8 @@ import ShowProfile from "./components/profile/ShowProfile";
 import CreateTravel from "./components/travel/CreateTravel";
 import EditTravel from "./components/travel/EditTravel";
 import Home from "./components/home/Home";
+import Landing from "./components/landing/Landing";
+import About from "./components/landing/About";
 
 const Router = () => {
   // const { user } = useContext(AppContext);
@@ -16,7 +18,10 @@ const Router = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <h1>Home</h1>
+        <Landing />
+      </Route>
+      <Route exact path="/about">
+        <About />
       </Route>
       <Route exact path="/login">
         <Login />

@@ -18,18 +18,20 @@ const Nav = () => {
     <nav className="uk-navbar-container" uk-navbar="true">
       <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
-          <li>
-            <div className="logo">
-              <img
-                src="https://res.cloudinary.com/elwiiman/image/upload/v1574493537/MexicoParaTodos/logo.png"
-                alt="logo"
-              />
-            </div>
+          <li className="">
+            <NavLink className="lowcase" exact to="/">
+              Home
+            </NavLink>
+          </li>
+          <li className="">
+            <NavLink className="lowcase" exact to="/about">
+              ¿Quiénes somos?
+            </NavLink>
           </li>
           {user._id ? (
             <li className="">
               <NavLink className="lowcase" exact to="/home">
-                Home
+                Viajes
               </NavLink>
             </li>
           ) : null}
