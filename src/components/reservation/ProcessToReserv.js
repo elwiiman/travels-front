@@ -3,7 +3,7 @@ import { AppContext } from "../../AppContext";
 
 import Reserv from "../reservation/Reserv";
 import Resumen from "../reservation/Resumen";
-import Pay from "../reservation/Pay";
+import ReadyForPay from "./ReadyForPay";
 
 const ProcessToReserv = ({
   title,
@@ -54,7 +54,7 @@ const ProcessToReserv = ({
   }
 
   if (step === 3) {
-    return <Pay />;
+    return <ReadyForPay />;
   }
 };
 
