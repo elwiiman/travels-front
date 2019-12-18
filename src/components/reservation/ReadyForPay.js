@@ -1,7 +1,8 @@
 import React from "react";
+import Implement from "../paypal/Implement";
 
 const ReadyForPay = () => {
-  return <div>paso 3</div>;
+  return <Implement />;
 };
 
 export default ReadyForPay;
