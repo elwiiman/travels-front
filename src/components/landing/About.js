@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const About = () => {
   return (
     // className="uk-flex uk-flex-center uk-flex-middle "

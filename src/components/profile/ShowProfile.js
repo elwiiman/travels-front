@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 
 import ProfileForm from "./ProfileForm";
 import { AppContext } from "../../AppContext";
-import UIkit from "uikit";
 
 const ShowProfile = () => {
   const [isEditing, setEditing] = useState(false);

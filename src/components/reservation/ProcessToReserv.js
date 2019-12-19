@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
 
 import Reserv from "../reservation/Reserv";
 import Resumen from "../reservation/Resumen";
-import ReadyForPay from "./ReadyForPay";
+import Reservations from "./Reservations.js";
 
 const ProcessToReserv = ({
   title,
@@ -15,7 +15,7 @@ const ProcessToReserv = ({
   duration,
   type
 }) => {
-  const { assistants, setAssistants, step, setStep } = useContext(AppContext);
+  const { assistants, step, setStep } = useContext(AppContext);
 
   const nextStep = newdata => {
     setStep(step + 1);
@@ -49,12 +49,14 @@ const ProcessToReserv = ({
         duration={duration}
         type={type}
         toggleReserv={() => toggleReserve()}
+        aviableSeats={aviableSeats}
+        id={id}
       ></Resumen>
     );
   }
 
   if (step === 3) {
-    return <ReadyForPay />;
+    return <Reservations />;
   }
 };
 

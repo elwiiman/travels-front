@@ -18,20 +18,32 @@ const Nav = () => {
     <nav className="uk-navbar-container" uk-navbar="true">
       <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
-          <li className="">
-            <NavLink className="lowcase" exact to="/">
-              Home
-            </NavLink>
-          </li>
-          <li className="">
-            <NavLink className="lowcase" exact to="/about">
-              ¿Quiénes somos?
-            </NavLink>
-          </li>
+          {!user._id ? (
+            <li className="">
+              <NavLink className="lowcase" exact to="/">
+                Home
+              </NavLink>
+            </li>
+          ) : null}
+          {!user._id ? (
+            <li className="">
+              <NavLink className="lowcase" exact to="/about">
+                ¿Quiénes somos?
+              </NavLink>
+            </li>
+          ) : null}
           {user._id ? (
             <li className="">
               <NavLink className="lowcase" exact to="/home">
                 Viajes
+              </NavLink>
+            </li>
+          ) : null}
+
+          {user.role === "user" ? (
+            <li className="">
+              <NavLink className="lowcase" exact to="/my-reservations">
+                Mis Viajes
               </NavLink>
             </li>
           ) : null}
@@ -68,7 +80,7 @@ const Nav = () => {
                       className="uk-button uk-button-default uk-button-small lowcase"
                       onClick={handleLogout}
                     >
-                      Logout
+                      Cerrar Sesión
                     </button>
                   </li>
                 </ul>
@@ -85,12 +97,12 @@ const Nav = () => {
                 className="lowcase"
                 to="/login"
               >
-                Login
+                Iniciar Sesión
               </Link>
             </li>
             <li className="">
               <Link className="lowcase" to="/signup">
-                Signup
+                Registrarse
               </Link>
             </li>
           </ul>

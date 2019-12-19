@@ -6,6 +6,7 @@ const AppProvider = ({ children }) => {
   const initialUserState = JSON.parse(localStorage.getItem("user")) || {};
   const [user, setUser] = useState(initialUserState);
   const [travels, setTravels] = useState([]);
+  const [myReservations, setMyReservations] = useState([]);
   const [travel, setTravel] = useState(null);
   const [assistants, setAssistants] = useState([]);
   const [step, setStep] = useState(1);
@@ -31,6 +32,8 @@ const AppProvider = ({ children }) => {
         resetContext,
         travels,
         setTravels,
+        myReservations,
+        setMyReservations,
         travel,
         setTravel,
         assistants,

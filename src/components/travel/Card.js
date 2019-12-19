@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react";
-import EditTravelForm from "./EditTravelForm";
-import useForm from "../../hooks/useForm";
-import UIkit from "uikit";
-import { useHistory, Link } from "react-router-dom";
-import { useParams } from "react-router";
-import Router from "../../Router";
+import React from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/es";
 moment.locale("es");
@@ -162,7 +157,11 @@ const Card = ({
               to={`travel/info/${_id}`}
               className="uk-button uk-button-text"
             >
-              Más Información
+              {`${
+                transport.aviableSeats > 0
+                  ? "Más Información"
+                  : "Reservaciones Agotadas"
+              }`}
             </Link>
           </div>
         ) : null}

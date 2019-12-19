@@ -29,7 +29,6 @@ const Signup = () => {
       })
       .catch(res => {
         const { errormsg } = res.response.data;
-        console.log(res.response.data);
 
         if (occurrence === false) {
           occurrence = true;

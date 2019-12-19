@@ -1,14 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import IconInfo from "../common/IconInfo";
-import EditTravelForm from "./EditTravelForm";
-import useForm from "../../hooks/useForm";
-import UIkit from "uikit";
-import { useHistory, Link } from "react-router-dom";
-import { useParams } from "react-router";
-import Router from "../../Router";
+
+import { Link } from "react-router-dom";
+
 import moment from "moment";
 import "moment/locale/es";
-import Reserv from "../reservation/Reserv";
+
 import ProcessToReserv from "../reservation/ProcessToReserv";
 import { AppContext } from "../../AppContext";
 moment.locale("es");

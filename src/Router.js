@@ -11,6 +11,7 @@ import EditTravel from "./components/travel/EditTravel";
 import Home from "./components/home/Home";
 import Landing from "./components/landing/Landing";
 import About from "./components/landing/About";
+import Reservations from "./components/reservation/Reservations";
 
 const Router = () => {
   // const { user } = useContext(AppContext);
@@ -37,6 +38,9 @@ const Router = () => {
       </Route>
       <Route exact path="/travel">
         <CreateTravel />
+      </Route>
+      <Route exact path="/my-reservations">
+        <Reservations />
       </Route>
       <Route path="/travel/edit/:id" component={EditTravel} />
       <Route path="/travel/info/:id" component={Info} />

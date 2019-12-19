@@ -37,7 +37,7 @@ const ProfileForm = ({}) => {
       updateUser(formData)
         .then(res => {
           const { user } = res.data;
-          console.log(user);
+
           setUser(user);
           toggleEdit();
           UIkit.notification({

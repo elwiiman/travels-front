@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
 
 const AssistantTable = () => {
-  const { assistants, setAssistants } = useContext(AppContext);
+  const { assistants } = useContext(AppContext);
   let headersInRow = assistants.map((assistant, index) => {
     if (index === 0) return "Responsable";
     else return `Acompañante ${index}`;

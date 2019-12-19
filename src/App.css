@@ -152,3 +152,7 @@
 .principal-button {
   font-size: 1.114em !important;
 }
+
+.bold-text {
+  font-weight: bold;
+}

@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import { AppContext } from "../../AppContext";
+import React from "react";
 import moment from "moment";
 import "moment/locale/es";
 moment.locale("es");

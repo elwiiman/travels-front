@@ -11,7 +11,6 @@ const Home = () => {
   const { push } = useHistory();
 
   const deleteATravel = (id, index) => {
-    console.log(id);
     deleteTravel(id)
       .then(() => {
         travels.splice(index, 1);

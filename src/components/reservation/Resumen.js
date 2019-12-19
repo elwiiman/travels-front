@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
 import AssistantTable from "./AssistanTable";
 import DetailTable from "./DetailTable";
+import Implement from "../paypal/Implement";
 
 const Resumen = ({
   title,
@@ -13,13 +14,13 @@ const Resumen = ({
   duration,
   type
 }) => {
-  const { assistants, setAssistants, step, setStep } = useContext(AppContext);
+  const { user, assistants, step, setStep } = useContext(AppContext);
 
   const backStep = () => {
     setStep(step - 1);
   };
 
-  const nextStep = newdata => {
+  const nextStep = () => {
     setStep(step + 1);
   };
 
@@ -64,15 +65,15 @@ const Resumen = ({
             Cancelar
           </button>
         </div>
-        <div>
-          <button
-            onClick={() => {
-              nextStep();
-            }}
-            className="uk-button uk-button-primary"
-          >
-            Siguiente
-          </button>
+        <div className="uk-flex uk-flex-center contain">
+          <Implement
+            price={price}
+            userId={user._id}
+            travelId={id}
+            assistants={assistants}
+            nextStep={() => nextStep()}
+            aviableSeats={aviableSeats}
+          />
         </div>
       </div>
     </div>

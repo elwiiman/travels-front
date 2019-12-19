@@ -1,21 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
-import { days, countries } from "../../auxiliar/auxiliarData";
-import { useHistory } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import UIkit from "uikit";
 import { AppContext } from "../../AppContext";
 
-const Reserv = ({
-  aviableSeats,
-  title,
-  toggleReserv,
-  nextStep,
-  price,
-  backStep
-}) => {
+const Reserv = ({ aviableSeats, title, toggleReserv, nextStep, price }) => {
   let [quantity, setQuantity] = useState(1);
   let [companions, setCompanions] = useState([{ value: null }]);
   let occurrence = false;
-  let datablank = true;
 
   const { assistants, setAssistants } = useContext(AppContext);
 

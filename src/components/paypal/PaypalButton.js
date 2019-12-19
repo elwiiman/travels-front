@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import scriptLoader from "react-async-script-loader";
+
 class PaypalButton extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +27,7 @@ class PaypalButton extends React.Component {
       }
     }
   }
+
   render() {
     const paypal = window.PAYPAL;
     const {
